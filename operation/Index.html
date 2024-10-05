@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turing</title>
+
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="../tailwind.config.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../css/scrollbar.css" />
+        <style>
+            body {
+                background-color: #f0f4f8; /* Warna latar belakang utama */
+                background-image: linear-gradient(to bottom, #b3c0cb, #97bcbd); /* Gradient warna biru/laut */
+                animation: wave-animation 10s infinite linear alternate; /* Animasi dengan nama wave-animation */
+            }
+    
+            @keyframes wave-animation {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 100% 0;
+                }
+            }
+        </style>
+    </head>
+    <body class="mx-4 my-5 bg-gray-100 dark:bg-gray-900 ">
+        <div class="flex flex-col">
+            <div class="text-center mb-3">
+                <h1 class="font-semibold text-2xl">TURING MACHINE</h1>
+                <h1 class="font-semibold text-2xl">Case 2 : ((M + N)<sup>A</sup>) / B</h1>
+            </div>
+        </div> 
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-200 p-6 rounded-lg shadow-lg w-full max-w-3xl ">     
+            <section id="input" class="mb-4 mx-4 flex flex-col gap-y-4">
+                <div class="flex gap-x-5">
+                    <div>
+                        <label for="input-firstnumber" class="block dark:text-gray-600 font-medium">M</label>
+                        <input type="number" id="input-firstnumber" name="input-firstnumber" placeholder="Number" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div>
+                        <label for="input-secondnumber" class="block dark:text-gray-600 font-medium">N</label>
+                        <input type="number" id="input-secondnumber" name="input-secondnumber" placeholder="Number" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div class="flex items-end">
+                        <button id="input-btn" class="px-4 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Set
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-x-5 hidden">
+                    <div>
+                        <label for="raw-input" class="block dark:text-gray-500 font-medium">Raw Input</label>
+                        <input type="text" placeholder="BB1111X11B" name="raw-input" id="raw-input" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div class="invisible">
+                        <label for="username" class="block text-sm text-gray-300 dark:text-gray-300"></label>
+                        <input type="text" placeholder="Number" class="block mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div class="flex items-end">
+                        <button id="raw-input-btn" class="px-4 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Set
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-x-5">
+                    <div>
+                        <label for="output-text" class="block dark:text-gray-500 font-medium">M + N</label>
+                        <input type="text" placeholder="Output (don't text here)" name="output-text" id="output-text" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" readonly/>
+                    </div>
+                    <div>
+                        <label for="input-thirdnumber" class="block dark:text-gray-600 font-medium">A</label>
+                        <input type="number" id="input-thirdnumber" name="input-thirdnumber" placeholder="Number" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div class="flex items-end">
+                        <button id="raw-input-btn-a" class="px-4 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Set
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-x-5">
+                    <div>
+                        <label for="output-text-b" class="block dark:text-gray-500 font-medium">(M + N)<sup>A</sup></label>
+                        <input type="text" placeholder="Output (don't text here)" name="output-text-b" id="output-text-b" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" readonly />
+                    </div>
+                    <div>
+                        <label for="input-fourthnumber" class="block dark:text-gray-600 font-medium">B</label>
+                        <input type="number" id="input-fourthnumber" name="input-fourthnumber" placeholder="Number" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" />
+                    </div>
+                    <div class="flex items-end">
+                        <button id="raw-input-btn-b" class="px-4 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Set
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-x-5">
+                    <div>
+                        <label for="output-text-c" class="block dark:text-gray-500 font-medium">RESULT</sup></label>
+                        <input type="text" placeholder="Result (can't text here)" name="output-text-c" id="output-text-c" class="block mt-2 w-full placeholder-gray-400 dark:placeholder-gray-400 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-300" readonly />
+                    </div>
+                </div>
+
+            </section>
+            <div id="modal" class="z-50 hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                <div class="bg-white p-6 rounded shadow-lg flex flex-col items-center">
+                    <h2 class="text-xl font-bold mb-3">PROGRAM SELESAI</h2>
+                    <p id="modal-output" class="font-medium"></p>
+                    <button id="closeModalBtn" class="mt-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        Close
+                    </button>
+                </div>
+            </div>
+            <section id="input" class="mb-10 mx-4 flex flex-col gap-y-4">
+                <div class="flex gap-x-5">
+                    <div class="flex items-end w-1/5">
+                        <button id="nextMove-button" class="w-full px-3 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Next Move
+                        </button>
+                    </div>
+                    <div class="flex items-end w-1/5">
+                        <button id="play-button" class="w-full px-3 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Play
+                        </button>
+                    </div>
+                    <div class="flex items-end w-1/5">
+                        <button id="pause-button" class="w-full px-3 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Pause
+                        </button>
+                    </div>
+                    <div class="flex items-end w-1/5">
+                        <button id="run-until-finish-button" class="w-full px-3 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Finish
+                        </button>
+                    </div>
+                    <div class="flex items-end w-1/5">
+                        <button id="reset-button" class="w-full px-3 py-2 mt-8 font-normal tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div> 
+        <main class="flex justify-center mb-10">
+            <hr class="border-black ">
+            <div class="tape-container flex flex-col mx-2 mt-3 py-4 overflow-y-auto scrollbar h-full"></div>
+        </main>
+        <hr class="border-black mt-10">
+        <footer class="mt-10 text-center text-black-500">
+            <h5>&copy; 2024 Muhammad Fikri Abdullah L0122110. All rights reserved.</h5>
+        </footer>
+
+        <script type="module" src="../js/cellStyle.js"></script>
+        <script type="module" src="../js/OperationObjectBuilder.js"></script>
+        <script type="module" src="../js/Operation/Addition.js"></script>
+        <script type="module" src="../js/Operation/Exponent.js"></script>
+        <script type="module" src="../js/Operation/Division.js"></script>
+        <script type="module" src="../js/Tape.js"></script>
+        <script type="module" src="../js/Turing.js"></script>        
+        <script type="module">
+            import Turing from "../js/Turing.js";
+            import Addition from "../js/Operation/Addition.js";
+            import cellStyle from "../js/cellStyle.js";
+            import Exponent from "../js/Operation/Exponent.js";
+            import Division from "../js/Operation/Division.js";
+            
+            // T = Turing
+            let T = null;
+            let isPlaying = false;
+
+
+            let openModalBtn;
+            let closeModalBtn;
+            let modal;
+
+            // Function to open the modal
+            function openModal(outputNumber, outputNumber2, outputNumber3) {
+                modal.classList.remove("hidden");
+                if (T.operation === 'addition') {
+                    document.getElementById("modal-output").innerHTML = "Addition Output: " + outputNumber;
+                } else if (T.operation === 'exponent') {
+                    document.getElementById("modal-output").innerHTML = "Exponent Output: " + outputNumber2;
+                } else if (T.operation === 'division') {
+                    document.getElementById("modal-output").innerHTML = "Final Output: " + outputNumber3;
+                }
+            }
+
+                // Function to close the modal
+            function closeModal() {
+                modal.classList.add("hidden");
+            }
+
+            const addTape = function (container) {
+                const tape = document.createElement("div");
+
+                tape.setAttribute(
+                    "class",
+                    "tape px-2 py-2 flex gap-x-1 flex-row w-full mx-auto overflow-x-scroll rounded-lg dark:bg-gray-800 scrollbar"
+                );
+
+                container.appendChild(tape);
+                return tape;
+            };
+
+            const addCell = function (tape, text, isHead = false) {
+                const newCell = document.createElement("div");
+                newCell.setAttribute("class", cellStyle.getStyle(isHead));
+
+                newCell.textContent = text;
+                tape.appendChild(newCell);
+                return newCell;
+            };
+
+            const resetTape = function (tape) {
+                tape.innerHTML = "";
+            };
+
+            const defaultTape = function (tape) {
+                resetTape(tape);
+                setRawInput("BBBBB", tape);
+            };
+
+            const setRawInput = function (rawInputValue, tape) {
+                resetTape(tape);
+
+                for (let a = 0; a < rawInputValue.length; a++) {
+                    addCell(tape, rawInputValue[a]);
+                }
+            };
+
+            const renderTape = function(Tapes){
+                const tapes = T.Tapes;
+                tapes.forEach((element) => {
+                    const tape = element.tape;
+                    const head = element.head;
+
+                    resetTape(Tapes[tapes.indexOf(element)]);
+                    for (let i = 0; i < tape.length; i++) {
+                        addCell(
+                            Tapes[tapes.indexOf(element)],
+                            tape[i],
+                            i === head
+                        );
+                    }
+                });
+                if(T.isFinished){
+                    isPlaying = false;
+                    const lastTape = tapes[tapes.length - 1].tape;
+                    const outputText = document.getElementById("output-text");
+                    const outputText2 = document.getElementById("output-text-b");
+                    const outputText3 = document.getElementById("output-text-c")
+                    let outputNumber = 0;
+                    let outputNumber2 = 0;
+                    let outputNumber3 = 0;
+                    if (T.operation === 'addition') {
+                        for (let i = 0; i < lastTape.length; i++) {
+                            if (lastTape[i] === "1") {
+                                outputNumber++;
+                            } else if (lastTape[i] === "0") {
+                                outputNumber--;
+                            }
+                        }
+                    } if (T.operation === 'exponent') {
+                        outputNumber2 = outputNumber;
+                        for (let i = 0; i < lastTape.length; i++) {
+                            if (lastTape[i] === "1") {
+                                outputNumber2++;
+                            } else if (lastTape[i] === "0") {
+                                outputNumber2--;
+                            }
+                        }                                                            
+                    } if(T.operation === 'division'){
+                        outputNumber3 = outputNumber2;
+                        for (let i = 0; i < lastTape.length; i++) {
+                        if (lastTape[i] === "0") {
+                            outputNumber3--;
+                        }
+                        if (lastTape[i] === "1") {
+                            outputNumber3++;
+                        }
+                        if (lastTape[i] === "U") {
+                            outputNumber3 = "Undifined";
+                        }
+                    }
+                    }                
+                    outputText.value = outputNumber.toString();  
+                    outputText2.value = outputNumber2.toString();
+                    outputText3.value = outputNumber3.toString();
+                    openModal(outputNumber, outputNumber2, outputNumber3);
+                }
+            };
+
+            const nextMove = function (Tapes) {
+                T.nextMove();
+                renderTape(Tapes);
+            };
+
+            document.addEventListener("DOMContentLoaded", function (event) {
+                const tapeContainer = document.querySelector(".tape-container");
+
+                const firstnumberInput = document.getElementById("input-firstnumber");
+                const secondnumberInput = document.getElementById("input-secondnumber");
+                const exponentInput = document.getElementById("input-thirdnumber");
+                const baseInput = document.getElementById("output-text");
+                const dividendInput = document.getElementById("output-text-b");
+                const divisorInput = document.getElementById("input-fourthnumber");
+                const inputBtnAdd = document.getElementById("input-btn");
+                const inputBtnExp = document.getElementById("raw-input-btn-a");
+                const inputBtnDiv = document.getElementById("raw-input-btn-b");
+
+                // Buttons
+                const nextMoveBtn = document.getElementById("nextMove-button");
+                const playBtn = document.getElementById("play-button");
+                const pauseBtn = document.getElementById("pause-button");
+                const resetButton = document.getElementById("reset-button");
+                const runUntilFinishButton = document.getElementById("run-until-finish-button");
+
+                // Raw Input Form
+                const rawInput = document.getElementById("raw-input");
+                const rawInputBtn = document.getElementById("raw-input-btn");
+
+                const Tapes = [];
+                const tapeCount = 3;
+
+                for (let i = 0; i < tapeCount; i++) {
+                    const tape = addTape(tapeContainer);
+                    Tapes.push(tape);
+                    defaultTape(tape);
+                }
+
+                inputBtnAdd.addEventListener("click", function (event) {
+                    resetTape(Tapes[0]);
+                    const firstnumber = firstnumberInput.value;
+                    const secondnumber = secondnumberInput.value;
+
+                    let rawInputValue = "BB";
+                    if(firstnumber > 0){
+                        rawInputValue += "1".repeat(firstnumber);
+                    } else if (firstnumber < 0){
+                        rawInputValue += "0".repeat(firstnumber * -1);
+                    } else {
+                        rawInputValue += "";
+                    }
+                    
+                    rawInputValue += "X";
+                    
+                    if(secondnumber > 0){
+                        rawInputValue += "1".repeat(secondnumber);
+                    } else if (secondnumber < 0){
+                        rawInputValue += "0".repeat(secondnumber * -1);
+                    } else {
+                        rawInputValue += "";
+                    }
+                    rawInputValue += "BB";
+
+                    setRawInput(rawInputValue, Tapes[0]);
+
+                    T = new Turing(Addition, 2, rawInputValue);
+                    T.operation = 'addition';
+                    renderTape(Tapes);
+                });
+
+                inputBtnExp.addEventListener("click", function (event) {
+                    resetTape(Tapes[0]);
+                    const base = baseInput.value;
+                    const exponent = exponentInput.value;
+
+                    let rawInputValue = "BB";
+                    rawInputValue += "1".repeat(base);
+                    rawInputValue += "0";
+                    rawInputValue += "1".repeat(exponent);
+                    rawInputValue += "BB";
+
+                    setRawInput(rawInputValue, Tapes[0]);
+
+                    T = new Turing(Exponent, 3, rawInputValue);
+                    T.operation = 'exponent'; 
+                    renderTape(Tapes);
+                });
+
+                inputBtnDiv.addEventListener("click", function (event) {
+                    resetTape(Tapes[0]);
+                    const dividend = dividendInput.value;
+                    const divisor = divisorInput.value;
+
+                    let rawInputValue = "BB";
+                    if(dividend > 0){
+                        rawInputValue += "1".repeat(dividend);
+                    } else if (dividend < 0){
+                        rawInputValue += "0".repeat(dividend * -1);
+                    } else {
+                        rawInputValue += "";
+                    }
+                    
+                    rawInputValue += "X";
+                    
+                    if(divisor > 0){
+                        rawInputValue += "1".repeat(divisor);
+                    } else if (divisor < 0){
+                        rawInputValue += "0".repeat(divisor * -1);
+                    } else {
+                        rawInputValue += "";
+                    }
+                    rawInputValue += "BB";
+
+                    setRawInput(rawInputValue, Tapes[0]);
+
+                    T = new Turing(Division, 3, rawInputValue);
+                    T.operation = 'division';
+                    renderTape(Tapes);
+                });
+
+                rawInputBtn.addEventListener("click", function (event) {
+                    setRawInput(rawInput.value, Tapes[0]);
+
+                    T = new Turing(Addition, 2, rawInput.value);
+                    renderTape(Tapes);
+                });
+
+                nextMoveBtn.addEventListener("click", function (event) {
+                    nextMove(Tapes);
+                });
+
+                playBtn.addEventListener("click", function (event) {
+                    if (T != null) {
+                        isPlaying = true;
+                    } else {
+                        alert("Please input a value first");
+                    }
+                });
+
+                pauseBtn.addEventListener("click", function (event) {
+                    isPlaying = false;
+                });
+
+                resetButton.addEventListener("click", function (event) {
+                    if (T != null) {
+                        T= null;
+                        isPlaying = false;
+                      Tapes.forEach((tape) => {
+                        
+                        defaultTape(tape);
+                        const outputText = document.getElementById("output-text");
+                        outputText.innerHTML = "";
+                      });  
+                    } 
+                });
+
+                runUntilFinishButton.addEventListener("click", function (event) {
+                    if (T != null) {
+                        isPlaying = true;
+                        T.runUntilFinish();
+                        renderTape(Tapes);
+                        isPlaying = false;
+                    } else {
+                        alert("Please input a value first");
+                    }
+                });
+
+                setInterval(function () {
+                    if (isPlaying) {
+                        nextMove(Tapes);
+                    }
+                }, 750);
+
+                // JavaScript
+                openModalBtn = document.getElementById("openModalBtn");
+                closeModalBtn = document.getElementById("closeModalBtn");
+                modal = document.getElementById("modal");
+
+                // Event listener for closing the modal
+                closeModalBtn.addEventListener("click", closeModal);
+            });
+        </script>
+    </body>
+</html>
